@@ -1,0 +1,9 @@
+# Part0
+
+Always keep Dev Console open
+- Mac shortcut: f12 or option + cmd + i
+Network tab -> Disable cache
+- Preserve log saves logs printed by app when page is reloaded
+
+Server and web browser communicate with HTTP (as shown in Network tab)
+Request and server response have several headers
