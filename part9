@@ -1,0 +1,41 @@
+# TypeScript
+
+Open-source typed superset of JS developed by Microsoft
+Compiles to plain JS
+(VSCode was written in TypeScript)
+
+TypeScript language features:
+- Type annotations - "contract"
+- Structural typing - two elements considered compatible if features are compatible
+- Type inference - compiler attempts to infer type info if no type has been specified
+
+any is a wildcard type that can represent any type
+
+At runtime, there's no type information because TypeScript removes all type system constructs during compilation
+
+Benefits:
+- Type checking and static code analysis
+- Warns about misspelling a variable / function name or trying to use a variable beyond its scope
+- Can function as lightweight code level documentation
+  - Function signature shows what kid of arguments function can consume and what type of data it will return
+- IDEs can provide bette intellisense
+
+Drawbacks:
+- Not all packages will have types
+- Type inference is good but not perfect
+
+Tip: start read error messages from the end
+
+Note that tsconfig rules differ by environment
+
+Can set up our own types, e.g. 
+```js
+type Operation = 'multiply' | 'add' | 'divide';
+```
+
+When there are multiple possible accepted values and all unexpected ones should result in an error, the switch... case statement should be used
+
+Use @types/ prefix when npm installing a new package as a --save-dev
+- From http://definitelytyped.org/
+
+
