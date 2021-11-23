@@ -111,3 +111,22 @@ unknown is the ideal type for input validation situation
 Enums are typically used when there is a set of predetermined values that are not expected to change in the future (e.g., weekdays, months, cardinal directions)
 
 
+### TypeScript and React
+
+Using TypeScript with React helps with the following:
+- Trying to pass an extra/unwanted prop to a component
+- Forgetting to pass a required prop to a component
+- Passing a prop of a wrong type to a component
+
+```
+npx create-react-app my-app --template typescript
+```
+
+Can mix TS and JS if tsconfig.json's allowJs is set to true
+Use eslint to enforce coding style
+-  configure eslint in .eslintrc
+
+.tsx is TypeScript equivalent of .jsx
+
+// Pausing at "Deeper type usage"
+
