@@ -2,7 +2,7 @@
 
 Open-source typed superset of JS developed by Microsoft
 Compiles to plain JS
-(VSCode was written in TypeScript)
+VSCode was written in TypeScript
 
 TypeScript language features:
 - Type annotations - "contract"
