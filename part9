@@ -38,4 +38,76 @@ When there are multiple possible accepted values and all unexpected ones should 
 Use @types/ prefix when npm installing a new package as a --save-dev
 - From http://definitelytyped.org/
 
+Implicit any typings are problematic (often due to coder forgetting to assign types
+
+express objects are explicitely any typed
+
+Official TypeScript compiler generates and packages JavaScript files from .ts files with the result that the built production version will no longer contain any TS code
+
+#1 - Start with:
+```js
+ npm install typescript --save-dev
+```
+
+TypeScript's compiler will generate tsconfig.json file
+#2 - Unless you've installed TypeScript globally, you'll need to add "tsc": "tsc" to "scripts" section of package.json
+
+#3 - Edit tsconfig.json file
+
+#4 - Set up development environment with ts-node-dev and add eslint
+
+#5 - Set up a test endpoint
+```js
+import express from 'express';
+const app = express();
+app.use(express.json());
+
+const PORT = 3000;
+
+app.get('/ping', (_req, res) => {
+  console.log('someone pinged here');
+  res.send('pong');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+```
+
+Data manipulation (e.g. fetching and saving diary entries) conducted in "service" code
+
+export types consisting of allowed strings, e.g.
+```js
+export type Weather = 'sunny' | 'rainy' | 'cloudy' | 'windy' | 'stormy';
+export type Visibility = 'great' | 'good' | 'ok' | 'poor';
+```
+
+```js
+export interface DiaryEntry {
+  id: number;
+  date: string;
+  weather: Weather;
+  visibility: Visibility;
+  comment: string;
+}
+```
+
+Can set a field as optional using ? after the type declaration:
+```js
+export interface DiaryEntry {
+  comment?: string;
+}
+```
+
+Pick utility type allows us to choose which fields of an existing type we want to use. Pick can be used to either construct a completely new type, or to inform a function what it should return on runtime. Utility types are a special kinds of type tools, but they can be used just like regular types
+Omit utility type can be used to declare which fields to exclude
+
+***Study utility type documentation:  https://www.typescriptlang.org/docs/handbook/utility-types.html
+
+Decide what return value should be if object is not found
+
+unknown is the ideal type for input validation situation
+
+Enums are typically used when there is a set of predetermined values that are not expected to change in the future (e.g., weekdays, months, cardinal directions)
+
 
