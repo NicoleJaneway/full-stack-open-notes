@@ -1,0 +1,103 @@
+ NodeJS is based on Google's Chrome V8 JS engine
+ Node supports most of the latest features of JS without having to transpile code
+ 
+ Change app into webserver:
+ ```js
+ const http = require('http')  // import Node's built-in web server module
+
+// use createServer method of http module to create a new web server
+const app = http.createServer((request, response) => {
+  // register event handler to server so that every time an HTTP request is made to localhost: 3001, request is responded to with status 200, specified Content-Type header, and "Hello World" content
+  response.writeHead(200, { 'Content-Type': 'text/plain' })
+  response.end('Hello World')
+})
+
+// bind http server to app variable
+const PORT = 3001
+app.listen(PORT)
+console.log(`Server running on port ${PORT}`)
+```
+
+express is a library built to work with Node's http module
+
+Transitive dependencies = dependencies of dependencies (and so on)
+
+Simplifying app with express:
+```js
+const express = require('express')
+const app = express()
+
+let notes = [
+  ...
+]
+
+app.get('/', (request, response) => {
+  response.send('<h1>Hello World!</h1>')
+})
+
+app.get('/api/notes', (request, response) => {
+  response.json(notes)
+})
+
+const PORT = 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
+```
+
+Routes to the application:
+#1 - defines event handler to handle HTTP GET requests made to application's /root:
+```js
+app.get('/', (request, response) => {
+  response.send('<h1>Hello World!</h1>')
+})
+```
+
+#2 - defines event handler that handles HTTP GET requests made to notes path of the application:
+```js
+app.get('/api/notes', (request, response) => {
+  response.json(notes)
+})
+```
+
+#3 - defines an event handler that handles HTTP GET request made to a specific note's id:
+```js
+app.get('/api/notes/:id', (request, response) => {
+  const id = Number(request.params.id)
+  const note = notes.find(note => note.id === id)
+  
+  if (note) {
+    response.json(note)
+  } else {
+    response.status(404).end()
+  }
+  
+  response.json(note)
+})
+```
+
+#4 - defines an event handler that handles HTTP DELETE request (and includes specific note's id):
+```js
+app.delete('/api/notes/:id', (request, response) => {
+  const id = Number(request.params.id)
+  notes = notes.filter(note => note.id !== id)
+
+  response.status(204).end()
+})
+```
+
+express automatically transforms data into JSON format
+
+nodemon watches files in directory in which node was started and automatically restarts application when files change
+
+REST = Representational State Transfer = architectural style designed for building scalable web apps
+- Resource will have unique url
+- Includes GET, POST, DELETE, PUT, and PATCH functionality
+
+Use [curl](https://curl.haxx.se/), [Postman](https://www.getpostman.com/), or VSCode [REST client plugin](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to test the application
+
+Debug missing Content-Type headers with console.log(request.headers)
+
+GET, HEAD, PUT, and DELETE are idempotent
+POST is not idempotent (i.e. 5 PUTs will result in 5 notes on the server, all with the same content)
+
