@@ -101,3 +101,11 @@ Debug missing Content-Type headers with console.log(request.headers)
 GET, HEAD, PUT, and DELETE are idempotent
 POST is not idempotent (i.e. 5 PUTs will result in 5 notes on the server, all with the same content)
 
+CORS = Cross-Origin Resource Sharing 
+
+```
+const cors = require('cors')
+app.use(cors())
+```
+
+Without database, notes are saved in memory, and do not persist if app is closed
