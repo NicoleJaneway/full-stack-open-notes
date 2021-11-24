@@ -128,5 +128,9 @@ Use eslint to enforce coding style
 
 .tsx is TypeScript equivalent of .jsx
 
-// Pausing at "Deeper type usage"
+To define custom types, can use type or interface
+- Multiple interfaces will result in a merged interface
+- If you try to define another type with the name of an existing type, this will result in an error stating that the type with the same name is already declared
+- TypeScript recommends using interfaces
 
+// Paused at State handling
