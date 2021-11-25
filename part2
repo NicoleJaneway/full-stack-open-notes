@@ -1,0 +1,20 @@
+# Communicating with server
+
+Can set up a simple server for demo purposes with 
+```
+npx json-server --port 3001 --watch db.json
+```
+
+where data is in the format 
+```
+{
+  "notes": [
+    {
+      "id": 1,
+      "content": "HTML is easy",
+      "date": "2019-05-30T17:30:31.098Z",
+      "important": true
+    }, ...
+  ]
+}
+```
